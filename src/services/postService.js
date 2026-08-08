@@ -36,34 +36,23 @@ async function getAllPosts(){
     return response.data
 }
 
-
-/* 
-
-async function getHootById(id) {
-    const response = await api.get(`/hoots/${id}`)
-    return response.data
-} */
-
-
-
-
-/* async function updateHoot(id, body) {
-    const response = await api.put(`/hoots/${id}`,body)
+async function likePost(id) {
+    const response = await api.post(`/post/like/${id}`)
     return response.data
 }
 
-async function deleteHoot(id) {
-    const response = await api.delete(`/hoots/${id}`)
+async function unlikePost(id) {
+    const response = await api.post(`/post/${id}/unlike`)
     return response.data
 }
 
-async function createComment(id,body) {
-    const response = await api.put(`/hoots/${id}/comment`,body)
-    return response.data
-} */
 
-export{
+export {
     createPost,
-    getAllPosts
-}
-export { createPost, getPostById, updatePostById, deletePostById };
+    getAllPosts,
+    getPostById,
+    updatePostById,
+    deletePostById,
+    likePost,
+    unlikePost
+};
