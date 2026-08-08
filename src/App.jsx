@@ -14,6 +14,7 @@ import SavedPosts from "./pages/save/SavedPosts";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/profile/Profile";
 import PostDetails from "./pages/Post/PostDetails";
+import EditPost from "./pages/Post/EditPost";
 import Explore from "./pages/Post/Explore";
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/post/new" element={<ProtectedRoute><CreatePost /></ProtectedRoute>} />
         <Route path="/post/save" element={<ProtectedRoute><SavedPosts /></ProtectedRoute>} />
         <Route path="/post/:id" element={<ProtectedRoute><PostDetails /></ProtectedRoute>} />
+        <Route path="/post/:id/edit" element={<ProtectedRoute><EditPost /></ProtectedRoute>} />
         <Route path="/notification" element={<ProtectedRoute><Notification /></ProtectedRoute>} />
         <Route path="/user-profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       </Routes>
