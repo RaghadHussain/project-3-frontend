@@ -68,7 +68,8 @@ function EditPost() {
         <label htmlFor="caption">Caption: </label>
         <textarea name="caption" id="caption" value={formData.caption} onChange={handleChange} />
 
-        <label htmlFor="image">Upload Image: </label>
+        {formData.image && <img src={formData.image} alt={formData.title} width="200" />}
+        <label htmlFor="image">Change Image: </label>
         <input id="image" name="image" type="file" accept="image/*" onChange={handleImageChange} />
 
         <label htmlFor="category">Category: </label>
