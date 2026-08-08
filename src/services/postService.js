@@ -1,15 +1,34 @@
-import api from './api'
-import axios from 'axios'
-
+import api from "./api";
+import axios from "axios";
 
 async function createPost(body) {
-    const postFormData = new FormData()
-    Object.entries(body).forEach(([key, value]) => {
-        if (value) postFormData.append(key, value)
-    })
+  const postFormData = new FormData();
+  Object.entries(body).forEach(([key, value]) => {
+    if (value) postFormData.append(key, value);
+  });
 
-    const response = await api.post('/post', postFormData)
-    return response.data
+  const response = await api.post("/post", postFormData);
+  return response.data;
+}
+
+async function getPostById(id) {
+  const response = await api.get(`/post/${id}`);
+  return response.data;
+}
+
+async function updatePostById(id, body) {
+  const postFormData = new FormData();
+  Object.entries(body).forEach(([key, value]) => {
+    if (value) postFormData.append(key, value);
+  });
+
+  const response = await api.put(`/post/${id}`, postFormData);
+  return response.data;
+}
+
+async function deletePostById(id) {
+  const response = await api.delete(`/post/${id}`);
+  return response.data;
 }
 /* async function getAllHoots(params) {
     const response = await api.get('/hoots')
@@ -17,10 +36,7 @@ async function createPost(body) {
 }
 
 
-async function getHootById(id) {
-    const response = await api.get(`/hoots/${id}`)
-    return response.data
-} */
+
 
 
 
@@ -39,6 +55,4 @@ async function createComment(id,body) {
     return response.data
 } */
 
-export{
-    createPost
-}
+export { createPost, getPostById, updatePostById, deletePostById };
