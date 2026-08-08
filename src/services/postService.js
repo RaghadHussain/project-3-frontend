@@ -30,12 +30,19 @@ async function deletePostById(id) {
   const response = await api.delete(`/post/${id}`);
   return response.data;
 }
-/* async function getAllHoots(params) {
-    const response = await api.get('/hoots')
+
+async function getAllPosts(){
+    const response = await api.get('/post')
     return response.data
 }
 
 
+/* 
+
+async function getHootById(id) {
+    const response = await api.get(`/hoots/${id}`)
+    return response.data
+} */
 
 
 
@@ -55,4 +62,8 @@ async function createComment(id,body) {
     return response.data
 } */
 
+export{
+    createPost,
+    getAllPosts
+}
 export { createPost, getPostById, updatePostById, deletePostById };

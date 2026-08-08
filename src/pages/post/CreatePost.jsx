@@ -29,7 +29,7 @@ function CreatePost() {
   }
 
   return (
-    <>
+    <div>
       <h1 className='title'>Add New Post</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title: </label>
@@ -51,7 +51,7 @@ function CreatePost() {
         </select>
         <button type="submit">Create Post</button>
       </form>
-    </>
+    </div>
   )
 }
 
