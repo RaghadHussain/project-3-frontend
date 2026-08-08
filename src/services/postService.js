@@ -11,11 +11,14 @@ async function createPost(body) {
     const response = await api.post('/post', postFormData)
     return response.data
 }
-/* async function getAllHoots(params) {
-    const response = await api.get('/hoots')
+
+async function getAllPosts(){
+    const response = await api.get('/post')
     return response.data
 }
 
+
+/* 
 
 async function getHootById(id) {
     const response = await api.get(`/hoots/${id}`)
@@ -40,5 +43,6 @@ async function createComment(id,body) {
 } */
 
 export{
-    createPost
+    createPost,
+    getAllPosts
 }
