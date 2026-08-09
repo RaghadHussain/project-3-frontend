@@ -18,6 +18,9 @@ function Profile() {
   useEffect(() => {
     async function loadInfo() {
       try {
+        setLoading(true)
+        setError(false)
+
         const userInfo = await getUserById(id)
         const userPosts = await getUserPosts(id)
 
@@ -68,6 +71,7 @@ function Profile() {
           {isFollowing ? "Unfollow" : "Follow"}
         </button>
       )}
+      {userProfile && <Link to={`/${id}/edit`}>Edit Profile</Link>}
 
       <div>
       {post.map(onePost => (

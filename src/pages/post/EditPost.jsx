@@ -22,9 +22,9 @@ function EditPost() {
       try {
         setLoading(true)
         const post = await getPostById(id)
-        setFormData(formData)
-      } catch (err) {
-        setError(err.response?.data?.message || 'Something went wrong')
+        setFormData(post)
+      } catch (e) {
+        setError(e.response?.data?.message)
       } finally {
         setLoading(false)
       }
@@ -45,8 +45,8 @@ function EditPost() {
     try {
       await updatePostById(id, formData)
       navigate(`/post/${id}`)
-    } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong')
+    } catch (e) {
+      setError(e.response?.data?.message)
     }
   }
 
@@ -54,7 +54,7 @@ function EditPost() {
   if (error) return <p className='error'>Error: {error}</p>
 
   return (
-    <>
+    <div>
       <h1 className='title'>Edit Post</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title: </label>
@@ -77,7 +77,7 @@ function EditPost() {
         </select>
         <button type="submit">Save Changes</button>
       </form>
-    </>
+    </div>
   )
 }
 
