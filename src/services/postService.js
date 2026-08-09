@@ -46,6 +46,10 @@ async function unlikePost(id) {
     return response.data
 }
 
+async function getUserPosts(id){
+  const response = await api.get(`/post/user/${id}`)
+    return response.data
+}
 
 export {
     createPost,
@@ -54,5 +58,6 @@ export {
     updatePostById,
     deletePostById,
     likePost,
-    unlikePost
+    unlikePost,
+    getUserPosts
 };

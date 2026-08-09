@@ -31,17 +31,34 @@ function logout(){
 
 }
 
-async function getUserInfo(){
-    const response = await api.get("/auth/user");
+async function getUserById(id){
+    const response = await api.get(`/auth/user/${id}`);
     return response.data;
 }
 
+async function followUser(id){
+    const response = await api.post(`/auth/user/${id}/follow`);
+    return response.data;
+}
+
+async function unfollowUser(id){
+    const response = await api.post(`/auth/user/${id}/unfollow`);
+    return response.data;
+}
+
+async function updateUserInfo(id){
+    const response = await api.put(`/auth/user/${id}`);
+    return response.data;
+}
 
 export {
   signUp,
   signIn,
   getCurrentUser,
   logout,
-  getUserInfo
+  getUserById,
+  followUser,
+  unfollowUser,
+  updateUserInfo
 };
 

@@ -31,7 +31,7 @@ function App() {
         <Route path="/post/:id" element={<ProtectedRoute><PostDetails /></ProtectedRoute>} />
         <Route path="/post/:id/edit" element={<ProtectedRoute><EditPost /></ProtectedRoute>} />
         <Route path="/notification" element={<ProtectedRoute><Notification /></ProtectedRoute>} />
-        <Route path="/user-profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/:id" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       </Routes>
     </div>
   );
