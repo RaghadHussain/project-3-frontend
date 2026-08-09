@@ -22,12 +22,7 @@ function EditPost() {
       try {
         setLoading(true)
         const post = await getPostById(id)
-        setFormData({
-          title: post.title || '',
-          caption: post.caption || '',
-          image: '',
-          category: post.category || ''
-        })
+        setFormData(formData)
       } catch (err) {
         setError(err.response?.data?.message || 'Something went wrong')
       } finally {
