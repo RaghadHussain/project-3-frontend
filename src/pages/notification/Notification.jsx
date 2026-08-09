@@ -23,36 +23,6 @@ function Notification() {
     loadNotifications();
   }, []);
 
-  function renderMessage(notification) {
-    const username = notification.sender?.username;
-
-    if (notification.type === "comment") {
-      return (
-        <>
-          <strong>{username}</strong>: {notification.comment?.message}
-        </>
-      );
-    }
-
-    if (notification.type === "like") {
-      return (
-        <>
-          <strong>{username}</strong> liked ur post
-        </>
-      );
-    }
-
-    if (notification.type === "follow") {
-      return (
-        <>
-          <strong>{username}</strong> follow ur account
-        </>
-      );
-    }
-
-    return <strong>{username}</strong>;
-  }
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error">Error: {error}</p>;
   if (notifications.length === 0) return <p>No notifications yet</p>;
@@ -60,9 +30,9 @@ function Notification() {
   return (
     <div>
       <h1>Notifications</h1>
-      {notifications.map((notification) => (
+      {notifications.map((noti) => (
         <div
-          key={notification._id}
+          key={noti._id}
           style={{
             border: "1px solid #ddd",
             borderRadius: "8px",
@@ -70,7 +40,26 @@ function Notification() {
             marginBottom: "8px",
           }}
         >
-          <p style={{ margin: 0 }}>{renderMessage(notification)}</p>
+          <h4>{noti.type} Notification</h4>
+          <p>
+            {noti.type === "comment" && (
+              <>
+                <strong>{noti.sender?.username}</strong> commented on your post{" "}
+                {noti.comment?.message}
+              </>
+            )}
+            {noti.type === "like" && (
+              <>
+                <strong>{noti.sender?.username}</strong> liked your post
+                {noti.post?.title && ` "${noti.post.title}"`}
+              </>
+            )}
+            {noti.type === "follow" && (
+              <>
+                <strong>{noti.sender?.username}</strong> started following you
+              </>
+            )}
+          </p>
         </div>
       ))}
     </div>
