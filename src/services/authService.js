@@ -46,8 +46,13 @@ async function unfollowUser(id){
     return response.data;
 }
 
-async function updateUserInfo(id){
-    const response = await api.put(`/auth/user/${id}`);
+async function updateUserInfo(id, body){
+    const userFormData = new FormData();
+    Object.entries(body).forEach(([key, value]) => {
+        if (value) userFormData.append(key, value);
+    });
+
+    const response = await api.put(`/auth/user/${id}`, userFormData);
     return response.data;
 }
 

@@ -16,6 +16,8 @@ import Profile from "./pages/profile/Profile";
 import PostDetails from "./pages/Post/PostDetails";
 import EditPost from "./pages/Post/EditPost";
 import Explore from "./pages/Post/Explore";
+import EditProfile from "./pages/profile/EditProfile";
+
 function App() {
   return (
     <div>
@@ -32,6 +34,7 @@ function App() {
         <Route path="/post/:id/edit" element={<ProtectedRoute><EditPost /></ProtectedRoute>} />
         <Route path="/notification" element={<ProtectedRoute><Notification /></ProtectedRoute>} />
         <Route path="/:id" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/:id/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
       </Routes>
     </div>
   );
