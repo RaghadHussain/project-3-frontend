@@ -31,10 +31,17 @@ function logout(){
 
 }
 
+async function getUserInfo(){
+    const response = await api.get("/auth/user");
+    return response.data;
+}
+
+
 export {
   signUp,
   signIn,
   getCurrentUser,
-  logout
+  logout,
+  getUserInfo
 };
 

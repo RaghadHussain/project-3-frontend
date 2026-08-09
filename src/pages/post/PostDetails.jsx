@@ -1,16 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { getPostById, deletePostById } from "../../services/postService";
-import {
-  getSavedPosts,
-  saveNewPost,
-  unsavePost,
-} from "../../services/saveService";
-import {
-  getCommentsByPostId,
-  createComment,
-  deleteCommentById,
-} from "../../services/commentService";
+import { getSavedPosts, saveNewPost, unsavePost } from "../../services/saveService";
+import { getCommentsByPostId, createComment, deleteCommentById } from "../../services/commentService";
 import { useAuth } from "../../context/AuthContext";
 
 function PostDetails() {
