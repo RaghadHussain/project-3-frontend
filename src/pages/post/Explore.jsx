@@ -44,10 +44,10 @@ function Explore() {
           {onePost.image && <img src={onePost.image} alt={onePost.title} width="200" />}
           <p>{onePost.caption}</p>
           <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth()}/{new Date(onePost.createdAt).getDate()}</p>
-          <Link to={`/post/${onePost._id}`}>💬</Link>
           <button onClick={() => handleLike(onePost)}>
             <span style={{ color: onePost.likes.some((oneId) => oneId === user._id) ? 'red' : 'gray' }}>❤︎⁠</span>
           </button>
+          <Link to={`/post/${onePost._id}`}>+</Link>
         </div>
       ))}
     </div>
