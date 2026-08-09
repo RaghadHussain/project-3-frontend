@@ -77,7 +77,7 @@ function Explore() {
         const saved = isPostSaved(onePost)
         return (
           <div key={onePost._id}>
-            <h4>{onePost.user.username}</h4>
+            <Link to={`/${onePost.user._id}`}><h4>{onePost.user.username}</h4></Link>
             {onePost.category && <p>{onePost.category}</p>}
             <h2>{onePost.title}</h2>
             {onePost.image && <img src={onePost.image} alt={onePost.title} width="200" />}
@@ -98,7 +98,7 @@ function Explore() {
             >
               Unsave
             </button>
-            <Link to={`/post/${onePost._id}`}>+</Link>
+            <Link to={`/post/${onePost._id}`}>💬</Link>
           </div>
         )
       })}

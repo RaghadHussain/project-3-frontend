@@ -72,13 +72,13 @@ function Profile() {
       <div>
       {post.map(onePost => (
         <div key={onePost._id}>
-          <h4>{onePost.user.username}</h4>
+          <Link to={`/${onePost.user._id}`}><h4>{onePost.user.username}</h4></Link>
           {onePost.category && <p>{onePost.category}</p>}
           <h2>{onePost.title}</h2>
           {onePost.image && <img src={onePost.image} alt={onePost.title} width="200" />}
           <p>{onePost.caption}</p>
           <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth() }/{new Date(onePost.createdAt).getDate()}</p>
-          <Link to={`/post/${onePost._id}`}>+</Link>
+          <Link to={`/post/${onePost._id}`}>💬</Link>
         </div>
       ))}
       </div>
