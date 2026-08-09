@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getAllPosts, likePost, unlikePost } from '../../services/postService'
+import { getSavedPosts, saveNewPost, unsavePost } from '../../services/saveService'
 import { Link } from 'react-router'
 import { useAuth } from '../../context/AuthContext'
 
@@ -7,6 +8,7 @@ function Explore() {
   const { user } = useAuth()
 
   const [posts, setPosts] = useState([])
+  const [savedPosts, setSavedPosts] = useState([])
 
 
   useEffect(() => {
@@ -14,6 +16,9 @@ function Explore() {
       try {
         const response = await getAllPosts()
         setPosts(response)
+
+        const savedResponse = await getSavedPosts()
+        setSavedPosts(savedResponse)
       } catch (e) {
         console.log(e)
       }
@@ -21,6 +26,12 @@ function Explore() {
 
     loadPosts()
   }, [])
+
+  function isPostSaved(onePost) {
+    return savedPosts.some(
+      (saved) => saved.post?._id === onePost._id && saved.user?._id === user._id
+    )
+  }
 
   async function handleLike(onePost) {
     const alreadyLiked = onePost.likes.some((oneId) => oneId === user._id)
@@ -34,22 +45,63 @@ function Explore() {
     )
   }
 
+  async function handleSave(onePost) {
+    try {
+      const saved = await saveNewPost(onePost._id)
+      setSavedPosts((prev) => [
+        ...prev,
+        { _id: saved._id, post: { _id: onePost._id }, user: { _id: user._id } },
+      ])
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  async function handleUnsave(onePost) {
+    try {
+      const existingSave = savedPosts.find(
+        (saved) => saved.post?._id === onePost._id && saved.user?._id === user._id
+      )
+      if (!existingSave) return
+
+      await unsavePost(existingSave._id)
+      setSavedPosts((prev) => prev.filter((saved) => saved._id !== existingSave._id))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <div>
-      {posts.map(onePost => (
-        <div key={onePost._id}>
-          <h4>{onePost.user.username}</h4>
-          {onePost.category && <p>{onePost.category}</p>}
-          <h2>{onePost.title}</h2>
-          {onePost.image && <img src={onePost.image} alt={onePost.title} width="200" />}
-          <p>{onePost.caption}</p>
-          <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth()}/{new Date(onePost.createdAt).getDate()}</p>
-          <button onClick={() => handleLike(onePost)}>
-            <span style={{ color: onePost.likes.some((oneId) => oneId === user._id) ? 'red' : 'gray' }}>❤︎⁠</span>
-          </button>
-          <Link to={`/post/${onePost._id}`}>+</Link>
-        </div>
-      ))}
+      {posts.map(onePost => {
+        const saved = isPostSaved(onePost)
+        return (
+          <div key={onePost._id}>
+            <h4>{onePost.user.username}</h4>
+            {onePost.category && <p>{onePost.category}</p>}
+            <h2>{onePost.title}</h2>
+            {onePost.image && <img src={onePost.image} alt={onePost.title} width="200" />}
+            <p>{onePost.caption}</p>
+            <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth()}/{new Date(onePost.createdAt).getDate()}</p>
+            <button onClick={() => handleLike(onePost)}>
+              <span style={{ color: onePost.likes.some((oneId) => oneId === user._id) ? 'red' : 'gray' }}>❤︎⁠</span>
+            </button>
+            <button
+              onClick={() => handleSave(onePost)}
+              style={{ display: saved ? 'none' : 'inline-block' }}
+            >
+              Save
+            </button>
+            <button
+              onClick={() => handleUnsave(onePost)}
+              style={{ display: saved ? 'inline-block' : 'none' }}
+            >
+              Unsave
+            </button>
+            <Link to={`/post/${onePost._id}`}>+</Link>
+          </div>
+        )
+      })}
     </div>
   )
 }
