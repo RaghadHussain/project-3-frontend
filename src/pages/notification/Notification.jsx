@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getNotifications } from "../../services/notificationService";
+import "./Notification.css";
 
 function Notification() {
   const [notifications, setNotifications] = useState([]);
@@ -28,18 +29,10 @@ function Notification() {
   if (notifications.length === 0) return <p>No notifications yet</p>;
 
   return (
-    <div>
+    <div className="notification-page">
       <h1>Notifications</h1>
       {notifications.map((noti) => (
-        <div
-          key={noti._id}
-          style={{
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-            padding: "10px 14px",
-            marginBottom: "8px",
-          }}
-        >
+        <div key={noti._id} className="notification-card">
           <h4>{noti.type} Notification</h4>
           <p>
             {noti.type === "comment" && (

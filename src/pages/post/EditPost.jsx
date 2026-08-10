@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { getPostById, updatePostById } from '../../services/postService'
 import { useNavigate, useParams } from 'react-router'
+import getImageUrl from '../../utils/imageUrl'
+import './Post.css'
 
 function EditPost() {
 
@@ -54,7 +56,7 @@ function EditPost() {
   if (error) return <p className='error'>Error: {error}</p>
 
   return (
-    <div>
+    <div className="edit-post-page">
       <h1 className='title'>Edit Post</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title: </label>
@@ -63,7 +65,7 @@ function EditPost() {
         <label htmlFor="caption">Caption: </label>
         <textarea name="caption" id="caption" value={formData.caption} onChange={handleChange} />
 
-        {formData.image && <img src={formData.image} alt={formData.title} width="200" />}
+        {formData.image && <img src={getImageUrl(formData.image)} alt={formData.title} width="200" />}
         <label htmlFor="image">Change Image: </label>
         <input id="image" name="image" type="file" accept="image/*" onChange={handleImageChange} />
 

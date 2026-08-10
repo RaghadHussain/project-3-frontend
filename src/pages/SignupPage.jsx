@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../services/authService";
+import "./Pages.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ function Signup() {
   };
 
   return (
-    <main>
+    <main className="signup-page">
       <h1>Sign Up</h1>
       <p className="error">{error}</p>
       <form onSubmit={handleSubmit}>

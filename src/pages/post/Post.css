@@ -1,0 +1,51 @@
+/* Create Post, Edit Post, Explore, Post Details */
+
+.create-post-page,
+.edit-post-page {
+  background-color: var(--white);
+  border: 1px solid var(--peony-soft);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 24px auto;
+  box-shadow: 0 4px 14px rgba(62, 39, 35, 0.08);
+}
+
+.explore-page {
+  display: grid;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.post-card {
+  background-color: var(--white);
+  border: 1px solid var(--peony-soft);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(62, 39, 35, 0.06);
+}
+
+.post-card h2 {
+  margin: 4px 0;
+}
+
+.post-card p {
+  color: var(--espresso-soft);
+}
+
+.post-details-page {
+  padding: 20px 0;
+}
+
+.post-details-page .comments-section {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 2px solid var(--peony-soft);
+}
+
+.post-details-page .comment {
+  background-color: var(--white);
+  border: 1px solid var(--peony-soft);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}

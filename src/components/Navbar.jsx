@@ -9,7 +9,7 @@ function Navbar() {
       ? 
       (<>
       <button onClick={logout}>Sign Out</button>
-        <Link to='/user-profile'>Profile</Link>
+        <Link to={`/${user._id}`}>Profile</Link>
         <Link to='/post/new'>New Post</Link>
         <Link to='/notification'>Notifications</Link>
         <Link to='/post/save'>Save</Link>

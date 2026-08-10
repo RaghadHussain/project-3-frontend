@@ -1,0 +1,19 @@
+.saved-posts-page {
+  padding: 20px 0;
+}
+
+.saved-post-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--white);
+  border: 1px solid var(--peony-soft);
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(62, 39, 35, 0.06);
+}
+
+.saved-post-card img {
+  flex-shrink: 0;
+}

@@ -1,0 +1,40 @@
+/* Homepage, Dashboard, Sign In, Sign Up */
+
+.homepage-page {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.dashboard-page {
+  padding: 40px 20px;
+}
+
+.dashboard-page h1 {
+  color: var(--espresso);
+}
+
+.signin-page,
+.signup-page {
+  background-color: var(--white);
+  border: 1px solid var(--peony-soft);
+  border-radius: 16px;
+  padding: 32px;
+  margin: 40px auto;
+  box-shadow: 0 4px 14px rgba(62, 39, 35, 0.08);
+}
+
+.signin-page h1,
+.signup-page h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.signin-page form,
+.signup-page form {
+  max-width: none;
+}
+
+.signin-page button,
+.signup-page button {
+  margin-right: 8px;
+}

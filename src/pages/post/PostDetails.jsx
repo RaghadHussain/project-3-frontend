@@ -4,6 +4,8 @@ import { getPostById, deletePostById } from "../../services/postService";
 import { getSavedPosts, saveNewPost, unsavePost } from "../../services/saveService";
 import { getCommentsByPostId, createComment, deleteCommentById } from "../../services/commentService";
 import { useAuth } from "../../context/AuthContext";
+import getImageUrl from "../../utils/imageUrl";
+import "./Post.css";
 
 function PostDetails() {
   const [post, setPost] = useState(null);
@@ -92,9 +94,9 @@ function PostDetails() {
     return <p className="error">Error: {error}</p>;
   }
   return (
-    <div>
+    <div className="post-details-page">
       <>
-        {post.image && <img src={post.image} alt={post.caption} width="400" />}
+        {post.image && <img src={getImageUrl(post.image)} alt={post.caption} width="400" />}
         <p>{post.caption}</p>
         <p>Posted by {post.user?.username}</p>
         <button onClick={handleDeletePost}>Delete Post</button>

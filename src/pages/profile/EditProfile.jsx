@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { getUserById, updateUserInfo } from '../../services/authService'
+import getImageUrl from '../../utils/imageUrl'
+import './EditProfile.css'
 
 function EditProfile() {
 
@@ -54,14 +56,14 @@ function EditProfile() {
     if (loading) return <p>Loading...</p>
     if (error) return <p className='error'>Error: {error}</p>
     return (
-        <div>
+        <div className="edit-profile-page">
             <h3 className='title'>Edit {formData.username} Profile</h3>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="bio">Bio: </label>
                 <input type="text" name="bio" id="bio" value={formData.bio} onChange={handleChange} />
 
                 {formData.profileImage && typeof formData.profileImage === 'string' &&
-                    <img src={formData.profileImage} alt={formData.username} width="200" />}
+                    <img src={getImageUrl(formData.profileImage)} alt={formData.username} width="200" />}
                 <label htmlFor="profileImage">Change Profile Image: </label>
                 <input id="profileImage" name="profileImage" type="file" accept="image/*" onChange={handleImageChange} />
 
