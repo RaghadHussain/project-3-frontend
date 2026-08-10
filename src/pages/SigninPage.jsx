@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 
 import { signIn } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
+import './Pages.css';
 
 
 const SignInForm = ({}) => {
@@ -40,7 +41,7 @@ const SignInForm = ({}) => {
   };
 
   return (
-    <main>
+    <main className="signin-page">
       <h1>Sign In</h1>
       <p className='error'>{error}</p>
       <form autoComplete='off' onSubmit={handleSubmit}>

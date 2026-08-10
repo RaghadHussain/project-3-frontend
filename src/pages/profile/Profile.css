@@ -1,0 +1,21 @@
+.profile-page {
+  padding: 20px 0;
+}
+
+.profile-page h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+}
+
+.profile-page > img {
+  display: block;
+}
+
+.profile-post-card {
+  background-color: var(--white);
+  border: 1px solid var(--peony-soft);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(62, 39, 35, 0.06);
+}

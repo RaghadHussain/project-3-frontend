@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { createPost } from '../../services/postService'
 import { useNavigate } from 'react-router'
+import './Post.css'
 
 function CreatePost() {
 
@@ -29,7 +30,7 @@ function CreatePost() {
   }
 
   return (
-    <div>
+    <div className="create-post-page">
       <h1 className='title'>Add New Post</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title: </label>
