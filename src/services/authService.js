@@ -2,7 +2,13 @@
 import api from './api'
 
 async function signUp(formData){
-    const response = await api.post('/auth/sign-up',formData)
+    const data = new FormData();
+    for (const key in formData) {
+        if (formData[key]) data.append(key, formData[key]);
+    }
+    const response = await api.post('/auth/sign-up', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    })
 }
 
 async function signIn(formData){

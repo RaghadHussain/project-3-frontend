@@ -27,7 +27,7 @@ function EditProfile() {
                 const response = await getUserById(id)
                 setFormData(response)
             } catch (e) {
-                setError(e.response?.data?.message || 'Something went wrong')
+                setError(e.response?.data?.message)
             } finally {
                 setLoading(false)
             }

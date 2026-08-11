@@ -13,6 +13,7 @@ function Navbar() {
         <Link to='/post/new'>New Post</Link>
         <Link to='/notification'>Notifications</Link>
         <Link to='/post/save'>Save</Link>
+        <Link to='/explore'>Explore</Link>
 
       </>) : 
       (<>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../services/authService";
+import getImageUrl from '../utils/imageUrl'
 import "./Pages.css";
 
 function Signup() {
@@ -10,16 +11,22 @@ function Signup() {
     username: "",
     password: "",
     passwordConf: "",
+    profileImage: '',
+    bio: ''
   });
   const [ submitting, setSubmitting ] = useState(false)
 
-  const { username, password, passwordConf } = formData;
+  const { username, password, passwordConf , bio} = formData;
 
   function handleChange(event){
     setError("");
     setFormData({ ...formData, [event.target.name]: event.target.value });
 
   }
+
+  function handleImageChange(event) {
+        setFormData({ ...formData, profileImage: event.target.files[0] })
+    }
 
 
   async function handleSubmit(event){
@@ -74,6 +81,19 @@ function Signup() {
             name="passwordConf"
             onChange={handleChange}
             required
+          />
+        </div>
+        <div>
+           <label htmlFor="profileImage">Change Profile Image: </label>
+            <input id="profileImage" name="profileImage" type="file" accept="image/*" onChange={handleImageChange} />
+
+          <label htmlFor="bio">Bio: </label>
+          <input
+            type="text"
+            id="bio"
+            value={bio}
+            name="bio"
+            onChange={handleChange}
           />
         </div>
         <div>
