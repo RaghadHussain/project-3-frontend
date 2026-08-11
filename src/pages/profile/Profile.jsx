@@ -66,9 +66,10 @@ function Profile() {
       {info.profileImage && <img src={getImageUrl(info.profileImage)} alt={info.username} width="200" />}
       <p>{info.bio}</p>
       <div>
-        <span>{info.followers.length} Followers</span>{" "}
-        <span>{info.followings.length} Following</span>
+        <Link to={`/${id}/followers`}>{info.followers.length} Followers</Link>{" "}
+        <Link to={`/${id}/following`}>{info.followings.length} Following</Link>
       </div>
+
       {!userProfile && user && (
         <button onClick={handleFollow}>
           {isFollowing ? "Unfollow" : "Follow"}
@@ -77,17 +78,17 @@ function Profile() {
       {userProfile && <Link to={`/${id}/edit`}>Edit Profile</Link>}
 
       <div>
-      {post.map(onePost => (
-        <div key={onePost._id} className="profile-post-card">
-          <Link to={`/${onePost.user._id}`}><h4>{onePost.user.username}</h4></Link>
-          {onePost.category && <p>{onePost.category}</p>}
-          <h2>{onePost.title}</h2>
-          {onePost.image && <img src={getImageUrl(onePost.image)} alt={onePost.title} width="200" />}
-          <p>{onePost.caption}</p>
-          <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth() }/{new Date(onePost.createdAt).getDate()}</p>
-          <Link to={`/post/${onePost._id}`}><IoChatbubbleOutline /></Link>
-        </div>
-      ))}
+        {post.map(onePost => (
+          <div key={onePost._id} className="profile-post-card">
+            <Link to={`/${onePost.user._id}`}><h4>{onePost.user.username}</h4></Link>
+            {onePost.category && <p>{onePost.category}</p>}
+            <h2>{onePost.title}</h2>
+            {onePost.image && <img src={getImageUrl(onePost.image)} alt={onePost.title} width="200" />}
+            <p>{onePost.caption}</p>
+            <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth()}/{new Date(onePost.createdAt).getDate()}</p>
+            <Link to={`/post/${onePost._id}`}><IoChatbubbleOutline /></Link>
+          </div>
+        ))}
       </div>
     </div>
   )

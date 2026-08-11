@@ -65,6 +65,7 @@ async function search(query){
     return response.data
 }
 
+
 export {
   signUp,
   signIn,

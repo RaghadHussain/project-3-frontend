@@ -17,11 +17,12 @@ import PostDetails from "./pages/Post/PostDetails";
 import EditPost from "./pages/Post/EditPost";
 import Explore from "./pages/Post/Explore";
 import EditProfile from "./pages/profile/EditProfile";
+import FollowList from "./pages/profile/FollowList";
 
 function App() {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/sign-up" element={<SignupPage />} />
@@ -35,6 +36,9 @@ function App() {
         <Route path="/notification" element={<ProtectedRoute><Notification /></ProtectedRoute>} />
         <Route path="/:id" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/:id/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
+        <Route path="/:id/followers" element={<ProtectedRoute><FollowList type="followers" /></ProtectedRoute>} />
+        <Route path="/:id/following" element={<ProtectedRoute><FollowList type="following" /></ProtectedRoute>} />
+
       </Routes>
     </div>
   );
