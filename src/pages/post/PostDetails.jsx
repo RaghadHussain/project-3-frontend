@@ -13,6 +13,7 @@ import { useAuth } from "../../context/AuthContext";
 import getImageUrl from "../../utils/imageUrl";
 import "./Post.css";
 
+
 function PostDetails() {
   const [post, setPost] = useState(null);
   const [saveId, setSaveId] = useState(null);
@@ -62,19 +63,6 @@ function PostDetails() {
     }
   }
 
-  async function handleSavePost() {
-    try {
-      if (saveId) {
-        await unsavePost(saveId);
-        setSaveId(null);
-      } else {
-        const saved = await saveNewPost(id);
-        setSaveId(saved._id);
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to save post");
-    }
-  }
 
   async function handleAddComment(event) {
     event.preventDefault();
@@ -159,8 +147,6 @@ function PostDetails() {
               <Link to={`/post/${post._id}/edit`} className="btn-link">Edit Post</Link>
             </>
           )}
-
-          <button onClick={handleSavePost}>{saveId ? "Unsave" : "Save"}</button>
         </div>
 
         <div className="comments-section">

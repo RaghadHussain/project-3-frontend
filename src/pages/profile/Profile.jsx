@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext'
 import { getUserPosts } from '../../services/postService'
 import getImageUrl from '../../utils/imageUrl'
 import './Profile.css'
+import { IoChatbubbleOutline } from "react-icons/io5";
 
 function Profile() {
   const { user } = useAuth()
@@ -84,7 +85,7 @@ function Profile() {
           {onePost.image && <img src={getImageUrl(onePost.image)} alt={onePost.title} width="200" />}
           <p>{onePost.caption}</p>
           <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth() }/{new Date(onePost.createdAt).getDate()}</p>
-          <Link to={`/post/${onePost._id}`}>💬</Link>
+          <Link to={`/post/${onePost._id}`}><IoChatbubbleOutline /></Link>
         </div>
       ))}
       </div>

@@ -6,6 +6,7 @@ import { useAuth } from '../../context/AuthContext'
 import getImageUrl from '../../utils/imageUrl'
 import './Post.css'
 import Search from '../../components/Search'
+import { IoChatbubbleOutline } from "react-icons/io5";
 
 function Explore() {
   const { user } = useAuth()
@@ -104,7 +105,7 @@ function Explore() {
             >
               Unsave
             </button>
-            <Link to={`/post/${onePost._id}`} className="btn-link">💬</Link>
+            <Link to={`/post/${onePost._id}`} className="btn-link"><IoChatbubbleOutline /></Link>
           </div>
         </div>
       ))}

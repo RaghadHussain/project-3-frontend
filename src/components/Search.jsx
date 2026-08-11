@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { search } from '../services/authService'
 
+
 function Search() {
 
     const [query, setQuery] = useState('')
@@ -33,7 +34,7 @@ function Search() {
         <div>
             <input type="text" 
             id='searchBox'
-             placeholder='Search User Name Here ...'
+             placeholder='🔍︎ Search User Name Here ...'
               value={query}
               onChange={(event)=>{setQuery(event.target.value)}}/>
 
