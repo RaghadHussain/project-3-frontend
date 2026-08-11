@@ -64,7 +64,6 @@ function FollowList({ type }) {
                             )}
                             <strong>{oneUser.username}</strong>
                         </Link>
-                        {user && user._id !== oneUser._id && (
                             <button
                                 onClick={() =>
                                     handleFollow(
@@ -75,7 +74,6 @@ function FollowList({ type }) {
                             >
                                 {myFollowings.some((f) => f._id === oneUser._id) ? 'Unfollow' : 'Follow'}
                             </button>
-                        )}
                     </div>
                 ))}
                 {users.length === 0 && <p>No {type} yet.</p>}

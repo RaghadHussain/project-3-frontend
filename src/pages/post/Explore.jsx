@@ -90,7 +90,7 @@ function Explore() {
           
           <div className="post-actions">
             <button onClick={() => handleLike(onePost)}>
-              <span style={{ color: onePost.likes.some((oneId) => oneId === user._id) ? 'red' : 'gray' }}>❤︎⁠</span>
+              <span style={{ color: onePost.likes?.some((oneId) => oneId === user?._id) ? 'red' : 'gray' }}>❤︎⁠</span>
             </button>
 
             <button
