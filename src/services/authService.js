@@ -29,8 +29,6 @@ async function getCurrentUser(){
 
 }
 
-
-
 function logout(){
 
     localStorage.removeItem("token");
@@ -62,6 +60,11 @@ async function updateUserInfo(id, body){
     return response.data;
 }
 
+async function search(query){
+    const response = await api.get(`/auth/search?q=${query}`)
+    return response.data
+}
+
 export {
   signUp,
   signIn,
@@ -70,6 +73,7 @@ export {
   getUserById,
   followUser,
   unfollowUser,
-  updateUserInfo
+  updateUserInfo,
+  search
 };
 
