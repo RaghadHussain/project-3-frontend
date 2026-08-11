@@ -76,8 +76,8 @@ function PostDetails() {
     }
   }
 
-  async function handleAddComment(evt) {
-    evt.preventDefault();
+  async function handleAddComment(event) {
+    event.preventDefault();
     if (!newComment.trim()) return;
 
     try {
@@ -103,16 +103,16 @@ function PostDetails() {
     setReplyText("");
   }
 
-  async function handleAddReply(evt, commentId) {
-    evt.preventDefault();
+  async function handleAddReply(event, commentId) {
+    event.preventDefault();
     if (!replyText.trim()) return;
 
     try {
       const updatedComment = await addReplyToComment(commentId, replyText);
       const newReply = updatedComment.replyTo[updatedComment.replyTo.length - 1];
 
-      setComments((prev) =>
-        prev.map((comment) =>
+      setComments((prevCom) =>
+        prevCom.map((comment) =>
           comment._id === commentId
             ? { ...comment, replyTo: [...(comment.replyTo || []), { ...newReply, sender: user }] }
             : comment
@@ -170,7 +170,7 @@ function PostDetails() {
               <p>{user.username}</p>
               <textarea
                 value={newComment}
-                onChange={(evt) => setNewComment(evt.target.value)}
+                onChange={(event) => setNewComment(event.target.value)}
                 placeholder="Add a comment..."
                 rows="3"
               />
@@ -195,10 +195,10 @@ function PostDetails() {
               )}
 
               {replyingTo === comment._id && (
-                <form onSubmit={(evt) => handleAddReply(evt, comment._id)} className="reply-form">
+                <form onSubmit={(event) => handleAddReply(event, comment._id)} className="reply-form">
                   <textarea
                     value={replyText}
-                    onChange={(evt) => setReplyText(evt.target.value)}
+                    onChange={(event) => setReplyText(event.target.value)}
                     placeholder="Write a reply..."
                     rows="2"
                   />
