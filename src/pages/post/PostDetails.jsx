@@ -167,7 +167,6 @@ function PostDetails() {
 
           {user && (
             <form onSubmit={handleAddComment}>
-              <p>{user.username}</p>
               <textarea
                 value={newComment}
                 onChange={(event) => setNewComment(event.target.value)}
@@ -181,7 +180,7 @@ function PostDetails() {
           {comments.map((comment) => (
             <div key={comment._id} className="comment">
               <p>
-                <strong>{comment.sender?.username}</strong>: {comment.message}
+                <Link to={`/${comment.sender._id}`}><strong>{comment.sender?.username}</strong></Link>: {comment.message}
               </p>
               {user && comment.sender?._id === user._id && (
                 <button onClick={() => handleDeleteComment(comment._id)}>
@@ -211,7 +210,7 @@ function PostDetails() {
                   {comment.replyTo.map((reply) => (
                     <div key={reply._id} className="reply">
                       <p>
-                        <strong>{reply.sender?.username}</strong>: {reply.message}
+                        <Link to={`/${reply.sender._id}`}><strong>{reply.sender?.username}</strong></Link>: {reply.message}
                       </p>
                       {user && reply.sender?._id === user._id && (
                         <button onClick={() => handleDeleteReply(comment._id, reply._id)}>
