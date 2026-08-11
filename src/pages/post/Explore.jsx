@@ -85,24 +85,25 @@ function Explore() {
           <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth()}/{new Date(onePost.createdAt).getDate()}</p>
           
           
-          <button onClick={() => handleLike(onePost)}>
-          <span style={{ color: onePost.likes.some((oneId) => oneId === user._id) ? 'red' : 'gray' }}>❤︎⁠</span>
-          </button>
+          <div className="post-actions">
+            <button onClick={() => handleLike(onePost)}>
+              <span style={{ color: onePost.likes.some((oneId) => oneId === user._id) ? 'red' : 'gray' }}>❤︎⁠</span>
+            </button>
 
-
-          <button
-            onClick={() => handleSave(onePost)}
-            style={{ display: isPostSaved(onePost) ? 'none' : 'inline-block' }}
-          >
-            Save
-          </button>
-          <button
-            onClick={() => handleUnsave(onePost)}
-            style={{ display: isPostSaved(onePost) ? 'inline-block' : 'none' }}
-          >
-            Unsave
-          </button>
-          <Link to={`/post/${onePost._id}`}>💬</Link>
+            <button
+              onClick={() => handleSave(onePost)}
+              style={{ display: isPostSaved(onePost) ? 'none' : 'inline-block' }}
+            >
+              Save
+            </button>
+            <button
+              onClick={() => handleUnsave(onePost)}
+              style={{ display: isPostSaved(onePost) ? 'inline-block' : 'none' }}
+            >
+              Unsave
+            </button>
+            <Link to={`/post/${onePost._id}`} className="btn-link">💬</Link>
+          </div>
         </div>
       ))}
     </div>
