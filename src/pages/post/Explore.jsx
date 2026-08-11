@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import { useAuth } from '../../context/AuthContext'
 import getImageUrl from '../../utils/imageUrl'
 import './Post.css'
+import Search from '../../components/Search'
 
 function Explore() {
   const { user } = useAuth()
@@ -75,6 +76,7 @@ function Explore() {
 
   return (
     <div className="explore-page">
+    <Search/>
       {posts.map(onePost => (
         <div key={onePost._id} className="post-card">
           <Link to={`/${onePost.user._id}`}><h4>{onePost.user.username}</h4></Link>
