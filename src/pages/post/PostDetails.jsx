@@ -152,15 +152,16 @@ function PostDetails() {
         <p>{post.caption}</p>
         <p>Posted by {post.user?.username}</p>
 
-        {user && post.user?._id === user._id && (
-          <div>
-            <button onClick={handleDeletePost}>Delete Post</button>
-            <Link to={`/post/${post._id}/edit`}>Edit Post</Link>
-          </div>
-        )}
+        <div className="post-actions">
+          {user && post.user?._id === user._id && (
+            <>
+              <button onClick={handleDeletePost}>Delete Post</button>
+              <Link to={`/post/${post._id}/edit`} className="btn-link">Edit Post</Link>
+            </>
+          )}
 
-
-        <button onClick={handleSavePost}>{saveId ? "Unsave" : "Save"}</button>
+          <button onClick={handleSavePost}>{saveId ? "Unsave" : "Save"}</button>
+        </div>
 
         <div className="comments-section">
           <h3>Comments</h3>
