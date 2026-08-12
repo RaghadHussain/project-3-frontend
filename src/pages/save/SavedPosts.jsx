@@ -10,6 +10,11 @@ function SavedPosts() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    document.title = "Saved Posts"
+  }, [])
+
+
+  useEffect(() => {
     async function loadSavedPosts() {
       try {
         setLoading(true);

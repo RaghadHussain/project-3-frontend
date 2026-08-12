@@ -32,6 +32,11 @@ function PostDetails() {
   const { id } = useParams();
 
   useEffect(() => {
+    document.title = "Post Details"
+  }, [])
+
+
+  useEffect(() => {
     async function loadPostDetails() {
       try {
         setLoading(true);

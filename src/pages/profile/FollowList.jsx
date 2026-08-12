@@ -15,6 +15,11 @@ function FollowList({ type }) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        document.title = "Follow List"
+    }, [])
+
+
+    useEffect(() => {
         async function loadList() {
             try {
                 setLoading(true)
@@ -64,16 +69,16 @@ function FollowList({ type }) {
                             )}
                             <strong>{oneUser.username}</strong>
                         </Link>
-                            <button
-                                onClick={() =>
-                                    handleFollow(
-                                        oneUser._id,
-                                        myFollowings.some((f) => f._id === oneUser._id)
-                                    )
-                                }
-                            >
-                                {myFollowings.some((f) => f._id === oneUser._id) ? 'Unfollow' : 'Follow'}
-                            </button>
+                        <button
+                            onClick={() =>
+                                handleFollow(
+                                    oneUser._id,
+                                    myFollowings.some((f) => f._id === oneUser._id)
+                                )
+                            }
+                        >
+                            {myFollowings.some((f) => f._id === oneUser._id) ? 'Unfollow' : 'Follow'}
+                        </button>
                     </div>
                 ))}
                 {users.length === 0 && <p>No {type} yet.</p>}
