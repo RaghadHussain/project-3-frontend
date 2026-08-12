@@ -10,7 +10,7 @@ import { getCurrentUser, logout } from "./services/authService";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 import CreatePost from "./pages/Post/CreatePost";
-import SavedPosts from "./pages/save/SavedPosts";
+import SavedPosts from "./pages/Save/SavedPosts";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/profile/Profile";
 import PostDetails from "./pages/Post/PostDetails";
