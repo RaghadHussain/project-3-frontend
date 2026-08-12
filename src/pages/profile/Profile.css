@@ -38,6 +38,24 @@
   margin-bottom: 20px;
 }
 
+/* "Edit Profile" is a Link, not a button - style it to match Follow/Unfollow */
+.profile-page > a {
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--espresso);
+  background-color: var(--peony);
+  border-radius: 20px;
+  padding: 8px 18px;
+  text-decoration: none;
+}
+
+.profile-page > a:hover {
+  background-color: var(--peony-deep);
+  text-decoration: none;
+}
+
 .profile-post-card {
   background-color: var(--peony-soft);
   border-radius: 20px;
@@ -50,4 +68,24 @@
 .profile-post-card img {
   display: block;
   margin: 0 auto;
+}
+
+/* the comment (💬) link is the last child of each post card - style it as a
+   pink button, same as the Explore page */
+.profile-post-card > a:last-child {
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--espresso);
+  background-color: var(--peony);
+  border-radius: 20px;
+  padding: 8px 18px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.profile-post-card > a:last-child:hover {
+  background-color: var(--peony-deep);
+  text-decoration: none;
 }

@@ -55,6 +55,19 @@ main, #root > div {
   padding: 0 20px 40px;
 }
 
+/* "Loading...", "No notifications yet", error messages, etc. render as a
+   bare <p> with no page wrapper around them, so they'd otherwise sit
+   directly on the striped background and disappear - give them a label */
+#root > div > p {
+  display: block;
+  width: fit-content;
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 14px 24px;
+  margin: 40px auto;
+  box-shadow: 0 4px 14px rgba(62, 39, 35, 0.07);
+}
+
 /* Navbar */
 nav {
   display: flex;

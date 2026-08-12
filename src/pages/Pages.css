@@ -13,13 +13,6 @@
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--peony-soft) 0px,
-    var(--peony-soft) 45px,
-    var(--espresso) 45px,
-    var(--espresso) 90px
-  );
 }
 
 .homepage-page {

@@ -38,3 +38,22 @@
 .saved-post-card button {
   margin-left: auto;
 }
+
+/* "See Post Details" is a Link, not a button - give it the same pink pill */
+.saved-post-card a {
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--espresso);
+  background-color: var(--peony);
+  border-radius: 20px;
+  padding: 8px 18px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.saved-post-card a:hover {
+  background-color: var(--peony-deep);
+  text-decoration: none;
+}
