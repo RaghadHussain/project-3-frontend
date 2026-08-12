@@ -1,26 +1,106 @@
-/* Homepage, Dashboard, Sign In, Sign Up */
+/* Home dash sign in sign up */
 
-.homepage-page {
+.homepage-page,
+.dashboard-page {
+  min-height: 100vh;
+  margin-top: -24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 60px 20px;
+  padding: 84px 20px 60px;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--peony-soft) 0px,
+    var(--peony-soft) 45px,
+    var(--espresso) 45px,
+    var(--espresso) 90px
+  );
 }
 
-.dashboard-page {
-  padding: 40px 20px;
+.homepage-page {
+  font-size: 0;
+}
+
+.homepage-page::before,
+.dashboard-page::before,
+.dashboard-page h1,
+.homepage-page::after,
+.dashboard-page::after {
+  background-color: var(--espresso);
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      transparent 30%,
+      rgba(0, 0, 0, 0.15) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px 78px,
+      rgba(0, 0, 0, 0.35) 78px 80px
+    );
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.homepage-page::before,
+.dashboard-page::before {
+  content: "Beelie";
+  font-family: "Chewy", cursive;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: var(--peony);
+  box-sizing: border-box;
+  width: 400px;
+  max-width: 90vw;
+  padding: 22px 40px 8px;
+  border-radius: 24px 24px 0 0;
 }
 
 .dashboard-page h1 {
-  color: var(--espresso);
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2.2rem;
+  color: var(--cream);
+  box-sizing: border-box;
+  width: 400px;
+  max-width: 90vw;
+  margin: 0;
+  padding: 10px 40px 6px;
+}
+
+.homepage-page::after,
+.dashboard-page::after {
+  content: "a little space, for her \2661";
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--peony-soft);
+  box-sizing: border-box;
+  width: 400px;
+  max-width: 90vw;
+  padding: 10px 40px 30px;
+  border-radius: 0 0 24px 24px;
+}
+
+.homepage-page::after {
+  padding: 22px 40px 30px;
 }
 
 .signin-page,
 .signup-page {
   background-color: var(--white);
-  border: 1px solid var(--peony-soft);
-  border-radius: 16px;
+  border-radius: 24px;
   padding: 32px;
   margin: 40px auto;
-  box-shadow: 0 4px 14px rgba(62, 39, 35, 0.08);
+  box-shadow: 0 8px 24px rgba(62, 39, 35, 0.1);
 }
 
 .signin-page h1,
@@ -36,5 +116,16 @@
 
 .signin-page button,
 .signup-page button {
-  margin-right: 8px;
+  margin-right: 10px;
+}
+
+.signin-page form button:first-of-type,
+.signup-page form button:first-of-type {
+  background-color: var(--espresso);
+  color: var(--white);
+}
+
+.signin-page form button:first-of-type:hover,
+.signup-page form button:first-of-type:hover {
+  background-color: #2b1917;
 }
