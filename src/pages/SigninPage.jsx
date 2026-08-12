@@ -1,6 +1,6 @@
 // src/components/SignInForm/SignInForm.jsx
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import { signIn } from "../services/authService";
@@ -15,6 +15,10 @@ const SignInForm = ({}) => {
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    document.title = "Sign In";
+  }, []);
 
   function handleChange(event) {
     setFormData({ ...formData, [event.target.name]: event.target.value });

@@ -17,6 +17,11 @@ function Profile() {
   const [post, setPost] = useState([])
 
 
+  useEffect(() => {
+    document.title = "Profile"
+  }, [])
+
+
 
   useEffect(() => {
     async function loadInfo() {

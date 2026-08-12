@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createPost } from '../../services/postService'
 import { useNavigate } from 'react-router'
 import './Post.css'
@@ -15,6 +15,10 @@ function CreatePost() {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    document.title = "Publish New Post"
+  }, [])
+
   function handleChange(event) {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
@@ -28,6 +32,7 @@ function CreatePost() {
     const createdPost = await createPost(formData)
     navigate(`/post/${createdPost._id}`)
   }
+
 
   return (
     <div className="create-post-page">

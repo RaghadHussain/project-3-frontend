@@ -8,6 +8,10 @@ function Notification() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    document.title = "Notifications";
+  }, [])
+
+  useEffect(() => {
     async function loadNotifications() {
       try {
         setLoading(true);

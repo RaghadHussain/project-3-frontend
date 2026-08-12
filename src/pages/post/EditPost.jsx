@@ -20,6 +20,10 @@ function EditPost() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    document.title = "Edit Post"
+  }, [])
+
+  useEffect(() => {
     async function loadPost() {
       try {
         setLoading(true)

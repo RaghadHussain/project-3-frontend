@@ -18,6 +18,7 @@ import EditPost from "./pages/Post/EditPost";
 import Explore from "./pages/Post/Explore";
 import EditProfile from "./pages/profile/EditProfile";
 import FollowList from "./pages/profile/FollowList";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/:id/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
         <Route path="/:id/followers" element={<ProtectedRoute><FollowList type="followers" /></ProtectedRoute>} />
         <Route path="/:id/following" element={<ProtectedRoute><FollowList type="following" /></ProtectedRoute>} />
+        <Route path="*" element={<NotFoundPage/>}/>
 
       </Routes>
     </div>

@@ -16,6 +16,10 @@ function Explore() {
 
 
   useEffect(() => {
+    document.title = "Explore"
+  }, [])
+
+  useEffect(() => {
     async function loadPosts() {
       try {
         const response = await getAllPosts()

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../services/authService";
 import getImageUrl from '../utils/imageUrl'
@@ -17,6 +17,10 @@ function Signup() {
   const [ submitting, setSubmitting ] = useState(false)
 
   const { username, password, passwordConf , bio} = formData;
+
+  useEffect(() => {
+    document.title = "Sign Up";
+  }, []);
 
   function handleChange(event){
     setError("");

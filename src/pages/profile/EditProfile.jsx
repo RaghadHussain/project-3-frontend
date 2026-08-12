@@ -21,6 +21,11 @@ function EditProfile() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+    document.title = "Edit Profile"
+  }, [])
+
+
+    useEffect(() => {
         async function loadInfo() {
             try {
                 setLoading(true)
