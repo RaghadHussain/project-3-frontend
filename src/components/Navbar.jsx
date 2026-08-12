@@ -15,7 +15,7 @@ function Navbar() {
         <Link to='/post/save'>Save</Link>
         <Link to='/explore'>Explore</Link>
 
-      </>) : 
+      </>) :
       (<>
         <Link to='/sign-up'>Sign Up</Link>
         <Link to='/sign-in'>Sign In</Link>
