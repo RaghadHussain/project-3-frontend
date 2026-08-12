@@ -2,10 +2,17 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { getPostById, deletePostById } from "../../services/postService";
 import { getSavedPosts, saveNewPost, unsavePost } from "../../services/saveService";
-import { getCommentsByPostId, createComment, deleteCommentById } from "../../services/commentService";
+import {
+  getCommentsByPostId,
+  createComment,
+  deleteCommentById,
+  addReplyToComment,
+  deleteReplyById,
+} from "../../services/commentService";
 import { useAuth } from "../../context/AuthContext";
 import getImageUrl from "../../utils/imageUrl";
 import "./Post.css";
+
 
 function PostDetails() {
   const [post, setPost] = useState(null);
@@ -15,6 +22,9 @@ function PostDetails() {
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+
+  const [replyingTo, setReplyingTo] = useState(null);
+  const [replyText, setReplyText] = useState("");
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -36,7 +46,7 @@ function PostDetails() {
         const postComments = await getCommentsByPostId(id);
         setComments(postComments);
       } catch (err) {
-        setError(err.response.data.message);
+        setError(err.response?.data?.message || "Failed to load post");
       } finally {
         setLoading(false);
       }
@@ -49,26 +59,13 @@ function PostDetails() {
       await deletePostById(id);
       navigate("/explore");
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response?.data?.message || "Failed to delete post");
     }
   }
 
-  async function handleSavePost() {
-    try {
-      if (saveId) {
-        await unsavePost(saveId);
-        setSaveId(null);
-      } else {
-        const saved = await saveNewPost(id);
-        setSaveId(saved._id);
-      }
-    } catch (err) {
-      setError(err.response.data.message);
-    }
-  }
 
-  async function handleAddComment(evt) {
-    evt.preventDefault();
+  async function handleAddComment(event) {
+    event.preventDefault();
     if (!newComment.trim()) return;
 
     try {
@@ -76,7 +73,7 @@ function PostDetails() {
       setComments([{ ...created, sender: user }, ...comments]);
       setNewComment("");
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response?.data?.message || "Failed to add comment");
     }
   }
 
@@ -85,7 +82,49 @@ function PostDetails() {
       await deleteCommentById(commentId);
       setComments(comments.filter((comment) => comment._id !== commentId));
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response?.data?.message || "Failed to delete comment");
+    }
+  }
+
+  function handleReply(commentId) {
+    setReplyingTo((prev) => (prev === commentId ? null : commentId));
+    setReplyText("");
+  }
+
+  async function handleAddReply(event, commentId) {
+    event.preventDefault();
+    if (!replyText.trim()) return;
+
+    try {
+      const updatedComment = await addReplyToComment(commentId, replyText);
+      const newReply = updatedComment.replyTo[updatedComment.replyTo.length - 1];
+
+      setComments((prevCom) =>
+        prevCom.map((comment) =>
+          comment._id === commentId
+            ? { ...comment, replyTo: [...(comment.replyTo || []), { ...newReply, sender: user }] }
+            : comment
+        )
+      );
+      setReplyText("");
+      setReplyingTo(null);
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to add reply");
+    }
+  }
+
+  async function handleDeleteReply(commentId, replyId) {
+    try {
+      await deleteReplyById(commentId, replyId);
+      setComments((prev) =>
+        prev.map((comment) =>
+          comment._id === commentId
+            ? { ...comment, replyTo: comment.replyTo.filter((reply) => reply._id !== replyId) }
+            : comment
+        )
+      );
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to delete reply");
     }
   }
 
@@ -96,22 +135,28 @@ function PostDetails() {
   return (
     <div className="post-details-page">
       <>
+        <h4>{post.title}</h4>
         {post.image && <img src={getImageUrl(post.image)} alt={post.caption} width="400" />}
         <p>{post.caption}</p>
         <p>Posted by {post.user?.username}</p>
-        <button onClick={handleDeletePost}>Delete Post</button>
-        <Link to={`/post/${post._id}/edit`}>Edit Post</Link>
-        <button onClick={handleSavePost}>{saveId ? "Unsave" : "Save"}</button>
+
+        <div className="post-actions">
+          {user && post.user?._id === user._id && (
+            <>
+              <button onClick={handleDeletePost}>Delete Post</button>
+              <Link to={`/post/${post._id}/edit`} className="btn-link">Edit Post</Link>
+            </>
+          )}
+        </div>
 
         <div className="comments-section">
           <h3>Comments</h3>
 
           {user && (
             <form onSubmit={handleAddComment}>
-              <p>{user.username}</p>
               <textarea
                 value={newComment}
-                onChange={(evt) => setNewComment(evt.target.value)}
+                onChange={(event) => setNewComment(event.target.value)}
                 placeholder="Add a comment..."
                 rows="3"
               />
@@ -122,12 +167,46 @@ function PostDetails() {
           {comments.map((comment) => (
             <div key={comment._id} className="comment">
               <p>
-                <strong>{comment.sender?.username}</strong>: {comment.message}
+                <Link to={`/${comment.sender._id}`}><strong>{comment.sender?.username}</strong></Link>: {comment.message}
               </p>
               {user && comment.sender?._id === user._id && (
                 <button onClick={() => handleDeleteComment(comment._id)}>
                   Delete
                 </button>
+              )}
+              {user && (
+                <button onClick={() => handleReply(comment._id)}>
+                  Reply
+                </button>
+              )}
+
+              {replyingTo === comment._id && (
+                <form onSubmit={(event) => handleAddReply(event, comment._id)} className="reply-form">
+                  <textarea
+                    value={replyText}
+                    onChange={(event) => setReplyText(event.target.value)}
+                    placeholder="Write a reply..."
+                    rows="2"
+                  />
+                  <button type="submit">Send Reply</button>
+                </form>
+              )}
+
+              {comment.replyTo?.length > 0 && (
+                <div className="replies">
+                  {comment.replyTo.map((reply) => (
+                    <div key={reply._id} className="reply">
+                      <p>
+                        <Link to={`/${reply.sender._id}`}><strong>{reply.sender?.username}</strong></Link>: {reply.message}
+                      </p>
+                      {user && reply.sender?._id === user._id && (
+                        <button onClick={() => handleDeleteReply(comment._id, reply._id)}>
+                          Delete
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           ))}

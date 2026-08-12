@@ -15,4 +15,20 @@ async function deleteCommentById(commentId) {
   return response.data;
 }
 
-export { getCommentsByPostId, createComment, deleteCommentById };
+async function addReplyToComment(commentId, message) {
+  const response = await api.post(`/comment/${commentId}/replies`, { message });
+  return response.data;
+}
+
+async function deleteReplyById(commentId, replyId) {
+  const response = await api.delete(`/comment/${commentId}/replies/${replyId}`);
+  return response.data;
+}
+
+export {
+  getCommentsByPostId,
+  createComment,
+  deleteCommentById,
+  addReplyToComment,
+  deleteReplyById,
+};

@@ -5,6 +5,8 @@ import { Link } from 'react-router'
 import { useAuth } from '../../context/AuthContext'
 import getImageUrl from '../../utils/imageUrl'
 import './Post.css'
+import Search from '../../components/Search'
+import { IoChatbubbleOutline } from "react-icons/io5";
 
 function Explore() {
   const { user } = useAuth()
@@ -75,35 +77,38 @@ function Explore() {
 
   return (
     <div className="explore-page">
-      {posts.map(onePost => {
-        const saved = isPostSaved(onePost)
-        return (
-          <div key={onePost._id} className="post-card">
-            <Link to={`/${onePost.user._id}`}><h4>{onePost.user.username}</h4></Link>
-            {onePost.category && <p>{onePost.category}</p>}
-            <h2>{onePost.title}</h2>
-            {onePost.image && <img src={getImageUrl(onePost.image)} alt={onePost.title} width="200" />}
-            <p>{onePost.caption}</p>
-            <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth()}/{new Date(onePost.createdAt).getDate()}</p>
+    <Search/>
+      {posts.map(onePost => (
+        <div key={onePost._id} className="post-card">
+          <Link to={`/${onePost.user._id}`}><h4>{onePost.user.username}</h4></Link>
+          {onePost.category && <p>{onePost.category}</p>}
+          <h2>{onePost.title}</h2>
+          {onePost.image && <img src={getImageUrl(onePost.image)} alt={onePost.title} width="200" />}
+          <p>{onePost.caption}</p>
+          <p>Created At: {new Date(onePost.createdAt).getFullYear()}/{new Date(onePost.createdAt).getMonth()}/{new Date(onePost.createdAt).getDate()}</p>
+          
+          
+          <div className="post-actions">
             <button onClick={() => handleLike(onePost)}>
-              <span style={{ color: onePost.likes.some((oneId) => oneId === user._id) ? 'red' : 'gray' }}>❤︎⁠</span>
+              <span style={{ color: onePost.likes?.some((oneId) => oneId === user?._id) ? 'red' : 'gray' }}>❤︎⁠</span>
             </button>
+
             <button
               onClick={() => handleSave(onePost)}
-              style={{ display: saved ? 'none' : 'inline-block' }}
+              style={{ display: isPostSaved(onePost) ? 'none' : 'inline-block' }}
             >
               Save
             </button>
             <button
               onClick={() => handleUnsave(onePost)}
-              style={{ display: saved ? 'inline-block' : 'none' }}
+              style={{ display: isPostSaved(onePost) ? 'inline-block' : 'none' }}
             >
               Unsave
             </button>
-            <Link to={`/post/${onePost._id}`}>💬</Link>
+            <Link to={`/post/${onePost._id}`} className="btn-link"><IoChatbubbleOutline /></Link>
           </div>
-        )
-      })}
+        </div>
+      ))}
     </div>
   )
 }

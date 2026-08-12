@@ -70,7 +70,7 @@ function EditPost() {
         <input id="image" name="image" type="file" accept="image/*" onChange={handleImageChange} />
 
         <label htmlFor="category">Category: </label>
-        <select required name="category" id="category" value={formData.category} onChange={handleChange}>
+        <select name="category" id="category" value={formData.category} onChange={handleChange}>
           <option value="">Select A Category</option>
           <option value="fashion">Fashion</option>
           <option value="skincare">Skin Care</option>
