@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap');
 
 :root {
   --espresso: #3E2723;
@@ -23,6 +23,15 @@ body {
   min-height: 100vh;
   background-color: var(--cream);
   color: var(--espresso);
+  overflow-x: hidden;
+  /* bold peony / espresso stripes, showing on every page behind the content -
+     the sticky nav has its own solid background so it always sits on top,
+     never showing the stripes through it */
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--peony-soft) 0px, var(--peony-soft) 45px,
+    var(--espresso) 45px, var(--espresso) 90px
+  );
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -50,11 +59,35 @@ main, #root > div {
 nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   background-color: var(--peony);
-  padding: 14px 24px;
+  padding: 14px 28px;
   margin-bottom: 24px;
-  box-shadow: 0 2px 6px rgba(62, 39, 35, 0.12);
+  box-shadow: 0 2px 10px rgba(62, 39, 35, 0.15);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Beelie logo, injected purely via CSS since Navbar.jsx has no logo element */
+nav::before {
+  content: "Beelie";
+  font-family: 'Chewy', cursive;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  color: var(--peony);
+  -webkit-text-stroke: 1.5px var(--espresso);
+  text-shadow: 2px 2px 0 var(--espresso);
+  padding: 4px 8px 4px 0;
+  line-height: 1;
+}
+
+/* push the real nav links to the right, logo stays on the left */
+nav > *:first-child {
+  margin-left: auto;
 }
 
 nav a,
@@ -65,7 +98,7 @@ nav button {
 }
 
 nav a {
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
 }
 
@@ -94,6 +127,17 @@ button:hover {
 
 button:active {
   transform: scale(0.97);
+}
+
+/* primary CTA buttons (submit actions) get the strong espresso pill,
+   like the "buy" / "add to cart" button in the reference design */
+button[type="submit"] {
+  background-color: var(--espresso);
+  color: var(--white);
+}
+
+button[type="submit"]:hover {
+  background-color: #2b1917;
 }
 
 /* Forms & inputs */
