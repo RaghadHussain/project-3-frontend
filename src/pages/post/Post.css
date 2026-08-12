@@ -19,10 +19,6 @@
   padding: 24px 0;
 }
 
-/* the Search component (rendered first inside .explore-page) has no class
-hooks of its own, so it's styled by structural position instead - the
-"No Matching Results" / loading / results text was sitting bare on the
-striped background before this */
 .explore-page > div:first-child > div:not(:empty) {
   display: inline-block;
   background-color: var(--white);
@@ -72,7 +68,6 @@ striped background before this */
   margin-left: 10px;
 }
 
-/* row of Like / Save / Unsave / comment-link controls at the end of each card */
 .post-actions {
   display: flex;
   align-items: center;
@@ -81,7 +76,6 @@ striped background before this */
   margin-top: 14px;
 }
 
-/* the comment link uses an icon instead of text - style it like the other buttons */
 .btn-link {
   display: inline-flex;
   align-items: center;

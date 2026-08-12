@@ -39,10 +39,9 @@
   margin-left: auto;
 }
 
-/* "See Post Details" is a Link, not a button - give it the same pink pill */
 .saved-post-card a {
   display: inline-block;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--espresso);

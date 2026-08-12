@@ -8,7 +8,7 @@
 }
 
 .profile-page h4 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.6rem;
   margin-bottom: 6px;
 }
@@ -38,10 +38,9 @@
   margin-bottom: 20px;
 }
 
-/* "Edit Profile" is a Link, not a button - style it to match Follow/Unfollow */
 .profile-page > a {
   display: inline-block;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--espresso);
@@ -70,11 +69,9 @@
   margin: 0 auto;
 }
 
-/* the comment (💬) link is the last child of each post card - style it as a
-   pink button, same as the Explore page */
 .profile-post-card > a:last-child {
   display: inline-block;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--espresso);
