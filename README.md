@@ -5,9 +5,9 @@
 Beelie is a social blogging platform built for girls to share posts, follow each other, and interact through likes and comments. Girls sign up, create a profile, publish posts, and explore what others are posting — with follows, saves, and notifications to keep up with activity.
 
 ## Live Application
-Frontend: Deployed frontend
-Backend API: Deployed Backend
-Backend Repository: https://github.com/RaghadHussain/project-3-backend
+- Frontend: [Deployed Frontend URL](https://beelie.netlify.app/)
+- Backend API: [Deployed Backend URL](https://project-3-backend-fl7z.onrender.com)
+- Backend Repository: [Backend Repository URL](https://github.com/RaghadHussain/project-3-backend)
 
 
 ## Screenshots
@@ -147,10 +147,10 @@ Go to: http://localhost:5173
 
 ## Team Members
 
-| Name | GitHub |  |
-| --- | --- | --- |
-| Raghad Husain | [Raghad Github Profile](https://github.com/RaghadHussain)| 
-| Zainab Ali Ammar | [Zainab Github Profile](https://github.com/zainabaliammarali-cloud) | 
+| Name | GitHub |
+| --- | --- |
+| Raghad Husain | [Raghad Github Profile](https://github.com/RaghadHussain)
+| Zainab Ali Ammar | [Zainab Github Profile](https://github.com/zainabaliammarali-cloud)
 
 ## Credits
 
