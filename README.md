@@ -11,7 +11,12 @@ Beelie is a social blogging platform built for girls to share posts, follow each
 
 
 ## Screenshots
-
+![Welcome Page](image.png)
+![Explore Page](image-2.png)
+![Search](image-1.png)
+![Profile Page](image-3.png)
+![Notification Page](image-4.png)
+![Saved Posts Page](image-5.png)
 
 
 ## Technologies Used
